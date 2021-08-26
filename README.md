@@ -5,12 +5,7 @@
 # SQL Problem Set
 
 
-
-
-## Question 1
-For this question you’ll need to use SQL. [Follow this link](https://www.w3schools.com/SQL/TRYSQL.ASP?FILENAME=TRYSQL_SELECT_ALL) to access the data set required for the challenge. Please use queries to answer the following questions. Paste your queries along with your final numerical answers below.
-
-- a. How many orders were shipped by Speedy Express in total?
+- 1. 
 
 Queries: 
 ```sql
@@ -19,8 +14,8 @@ JOIN ORDERS o USING(OrderID)
 WHERE o.ShipperID = 1 
 ```
 
+- 2. 
 
-- b. What is the last name of the employee with the most orders?
 
 Queries: 
 ```sql
@@ -33,7 +28,7 @@ LIMIT 1
 ```
 
 
-- c. What product was ordered the most by customers in Germany?
+- 3. 
 
 Queries: 
 ```sql
@@ -47,7 +42,7 @@ GROUP BY CategoryID
 ORDER BY total DESC 
 LIMIT 1
 ```
-Result: Dairy Products
+
 
 ## For More Information
 
