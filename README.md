@@ -4,44 +4,43 @@
 
 # SQL Problem Set
 
+## ASSESSMENT TEST 1
 
-- 1. 
-
-Queries: 
-```sql
-SELECT SUM(od.Quantity) FROM OrderDetails od 
-JOIN ORDERS o USING(OrderID) 
-WHERE o.ShipperID = 1 
-```
-
-- 2. 
-
+- 1. Return the customer IDs of customers who have spent at least 110 with the staff member who has an ID of 2.
 
 Queries: 
 ```sql
-SELECT e.Lastname, SUM(od.Quantity) as total FROM OrderDetails od 
-JOIN ORDERS o USING(OrderID) 
-JOIN Employees e USING(EmployeeID) 
-GROUP BY EmployeeID 
-ORDER BY total DESC 
-LIMIT 1
+SELECT customer_id,SUM(amount)
+FROM payment
+WHERE staff_id = 2
+GROUP BY customer_id
+HAVING SUM(amount) > 110; 
 ```
 
+- 2. How many films begin with the letter J?
 
-- 3. 
 
 Queries: 
 ```sql
-SELECT c.CategoryName, COUNT(c.CategoryName) as total FROM Categories c 
-JOIN Products p USING(CategoryID) 
-JOIN OrderDetails od USING(ProductID) 
-JOIN Orders o USING(OrderID) 
-JOIN Customers cu USING(CustomerID) 
-WHERE cu.Country = 'Germany' 
-GROUP BY CategoryID 
-ORDER BY total DESC 
-LIMIT 1
+SELECT COUNT(*) FROM film
+WHERE title LIKE 'J%';
 ```
+
+- 3. What customer has the highest customer ID number whose name starts with an 'E' and has an address ID lower than 500?
+
+Queries: 
+```sql
+SELECT first_name,last_name FROM customer
+WHERE first_name LIKE 'E%'
+AND address_id <500
+ORDER BY customer_id DESC
+LIMIT 1;
+```
+
+
+## ASSESSMENT TEST 2
+
+
 
 
 ## For More Information
