@@ -48,6 +48,28 @@ SELECT * FROM cd.facilities;
 ```
 
 
+- 2. You want to print out a list of all of the facilities and their cost to members. How would you retrieve a list of only facility names and costs?
+
+Queries: 
+```sql
+SELECT name, membercost FROM cd.facilities;
+
+
+
+- 3. How can you produce a list of facilities that charge a fee to members?
+
+Queries: 
+```sql
+SELECT * FROM cd.facilities WHERE membercost > 0;
+```
+
+
+
+
+
+
+
+
 
 
 ## For More Information
