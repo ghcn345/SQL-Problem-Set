@@ -33,7 +33,6 @@ LIMIT 1;
 ## ASSESSMENT TEST 2
 
 - 1. How can you retrieve all the information from the cd.facilities table?
-Queries: 
 ```sql
 SELECT * FROM cd.facilities;
 ```
@@ -75,7 +74,6 @@ WHERE facid IN (1,5);
 
 
 - 7. How can you produce a list of members who joined after the start of September 2012? Return the memid, surname, firstname, and joindate of the members in question.
-Queries: 
 ```sql
 SELECT memid, surname, firstname, joindate 
 FROM cd.members 
@@ -155,5 +153,6 @@ For any additional questions, please contact **Ning Chen—chen.ning345@gmail.co
 Description of the structure of the repository and its contents:
 ```
 ├── README.md                           <- Solution of SQL Problem Set
+└── data                                <- SQL database
 └── images                              <- logo
 ```
