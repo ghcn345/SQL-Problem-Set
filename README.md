@@ -1,5 +1,5 @@
 <p>
-<img src="images/sql.jpg" width="900" height="500">
+<img src="images/sql.jpg" width="900" height="506">
 </p>
 
 # SQL Problem Set
