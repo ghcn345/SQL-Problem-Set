@@ -178,6 +178,34 @@ INSERT INTO teachers(first_name,last_name, homeroom_number,department,email,phon
 ```
 
 
+## Assessment Test 4
+
+- 1. Write a query that retrieves suppliers that work in either Georgia or California.
+```sql
+SELECT * FROM suppliers
+WHERE state = 'Georgia' OR state = 'California';
+```
+
+- 2. Write a query that retrieves suppliers with the characters "wo" and the character "I" or "i" in their name.
+```sql
+SELECT * FROM suppliers
+WHERE supplier_name like '%wo%' AND (supplier_name like '%i%' OR supplier_name like '%I%');
+```
+
+- 3. Write a query that retrieves suppliers on which a minimum of 37,000 and a maximum of 80,000 was spent. You may also use the BETWEEN operator to solve this problem.
+```sql
+SELECT * FROM suppliers
+WHERE total_spent >= 37000 AND total_spent <= 80000;
+```
+
+- 4. Write a query that returns the supplier names and the state in which they operate meeting the following conditions: belong in the state Georgia or Alaska, the supplier id is 100 or greater than 600, the amount spent is less than 100,000 or the amount spent is 220,000.
+```sql
+SELECT supplier_name, state FROM suppliers
+WHERE state IN ('Georgia', 'Alaska') AND (supplier_id = 100 OR supplier_id > 600) AND (total_spent < 100000 OR total_spent = 220000);
+```
+
+
+
 
 ## For More Information
 
