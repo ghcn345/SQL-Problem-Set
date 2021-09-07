@@ -205,6 +205,24 @@ WHERE state IN ('Georgia', 'Alaska') AND (supplier_id = 100 OR supplier_id > 600
 ```
 
 
+## Assessment Test 5
+
+- 1. Considering the data exists in the city table, write a query that will return records similar to what is shown below for those cities that have the COUNTRYCODE of 'cbd' : "NEW YORK CITY has the population of 8,500,000", "LOS ANGELES has the population of 632,000". Note: I'd like you to use functions in the SELECT statement to solve this problem.
+```sql
+SELECT CONCAT(CONCAT(UPPER(name), ' has the population of '), population)
+FROM city
+WHERE LOWER(countrycode) = 'cbd';
+```
+
+
+- 2. Write a query that would show the first three letters and the last three letters of the DISTRICT capitalized and separated by a dash. Note: I'd like you to use functions in the SELECT statement to solve this problem.
+```sql
+SELECT CONCAT(CONCAT(UPPER(SUBSTR(district, 1, 3)), ' - '), UPPER(SUBSTR(district, LENGTH(district)-2)))
+FROM city;
+```
+
+
+
 
 
 ## For More Information
