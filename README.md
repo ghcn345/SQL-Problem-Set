@@ -223,7 +223,7 @@ FROM city;
 
 ## Assessment Test 6
 
-- 1. [The Report](https://www.hackerrank.com/challenges/the-report/problem?isFullScreen=true): You are given two tables: Students and Grades. Students contains three columns ID, Name and Marks. Ketty gives Eve a task to generate a report containing three columns: Name, Grade and Mark. Ketty doesn't want the NAMES of those students who received a grade lower than 8. The report must be in descending order by grade -- i.e. higher grades are entered first. If there is more than one student with the same grade (8-10) assigned to them, order those particular students by their name alphabetically. Finally, if the grade is lower than 8, use "NULL" as their name and list them by their grades in descending order. If there is more than one student with the same grade (1-7) assigned to them, order those particular students by their marks in ascending order. Write a query to help Eve.
+- 1. [The Report](https://www.hackerrank.com/challenges/the-report/problem?isFullScreen=false): You are given two tables: Students and Grades. Students contains three columns ID, Name and Marks. Ketty gives Eve a task to generate a report containing three columns: Name, Grade and Mark. Ketty doesn't want the NAMES of those students who received a grade lower than 8. The report must be in descending order by grade -- i.e. higher grades are entered first. If there is more than one student with the same grade (8-10) assigned to them, order those particular students by their name alphabetically. Finally, if the grade is lower than 8, use "NULL" as their name and list them by their grades in descending order. If there is more than one student with the same grade (1-7) assigned to them, order those particular students by their marks in ascending order. Write a query to help Eve.
 ```sql
 SELECT IF(Grade > 7, Name, NULL), Grade, Marks
 FROM Students 
@@ -238,6 +238,37 @@ FROM Students S
 JOIN Grades G 
 ON S.Marks BETWEEN G.Min_Mark AND G.Max_Mark
 ORDER BY G.Grade DESC, Name;
+```
+
+
+- 2. [Binary Tree Nodes](https://www.hackerrank.com/challenges/binary-search-tree-1/problem?isFullScreen=false): You are given a table, BST, containing two columns: N and P, where N represents the value of a node in Binary Tree, and P is the parent of N. Write a query to find the node type of Binary Tree ordered by the value of the node. Output one of the following for each node. Root: If node is root node. Leaf: If node is leaf node. Inner: If node is neither root nor leaf node.
+```sql
+SELECT N, CASE
+    WHEN P IS NULL THEN ' Root'
+    WHEN N IN (SELECT P FROM BST) THEN 'Inner'
+    ELSE 'Leaf'
+    END
+FROM BST
+ORDER BY N;
+```
+OR
+```sql
+SELECT N, IF(P IS NULL, 'Root', IF((SELECT COUNT(*) FROM BST WHERE P=B.N)>0, 'Inner', 'Leaf')) FROM BST AS B
+ORDER BY N;
+```
+
+
+- 3. []():
+```sql
+
+```
+
+
+
+
+- 4. []():
+```sql
+
 ```
 
 
