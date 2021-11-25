@@ -223,16 +223,22 @@ FROM city;
 
 ## Assessment Test 6
 
-- 1. You are given two tables: Students and Grades. Students contains three columns ID, Name and Marks.
+- 1. [The Report](https://www.hackerrank.com/challenges/the-report/problem?isFullScreen=true): You are given two tables: Students and Grades. Students contains three columns ID, Name and Marks. Ketty gives Eve a task to generate a report containing three columns: Name, Grade and Mark. Ketty doesn't want the NAMES of those students who received a grade lower than 8. The report must be in descending order by grade -- i.e. higher grades are entered first. If there is more than one student with the same grade (8-10) assigned to them, order those particular students by their name alphabetically. Finally, if the grade is lower than 8, use "NULL" as their name and list them by their grades in descending order. If there is more than one student with the same grade (1-7) assigned to them, order those particular students by their marks in ascending order. Write a query to help Eve.
 ```sql
-SELECT IF(Grade < 8, NULL, Name), Grade, Marks
-FROM Students JOIN Grades
+SELECT IF(Grade > 7, Name, NULL), Grade, Marks
+FROM Students 
+JOIN Grades
 WHERE Marks BETWEEN Min_Mark AND Max_Mark
 ORDER BY Grade DESC, Name;
 ```
-
-
-
+OR
+```sql
+SELECT CASE WHEN G.Grade > 7 THEN S.Name ELSE 'NULL' END AS Name, G.Grade, S.Marks
+FROM Students S
+JOIN Grades G 
+ON S.Marks BETWEEN G.Min_Mark AND G.Max_Mark
+ORDER BY G.Grade DESC, Name;
+```
 
 
 
