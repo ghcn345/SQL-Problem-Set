@@ -221,7 +221,7 @@ SELECT CONCAT(CONCAT(UPPER(SUBSTR(district, 1, 3)), ' - '), UPPER(SUBSTR(distric
 FROM city;
 ```
 
-## Assessment Test 5
+## Assessment Test 6
 
 - 1. You are given two tables: Students and Grades. Students contains three columns ID, Name and Marks.
 ```sql
