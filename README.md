@@ -221,6 +221,19 @@ SELECT CONCAT(CONCAT(UPPER(SUBSTR(district, 1, 3)), ' - '), UPPER(SUBSTR(distric
 FROM city;
 ```
 
+## Assessment Test 5
+
+- 1. You are given two tables: Students and Grades. Students contains three columns ID, Name and Marks.
+```sql
+SELECT IF(Grade < 8, NULL, Name), Grade, Marks
+FROM Students JOIN Grades
+WHERE Marks BETWEEN Min_Mark AND Max_Mark
+ORDER BY Grade DESC, Name;
+```
+
+
+
+
 
 
 
