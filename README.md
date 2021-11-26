@@ -223,7 +223,36 @@ FROM city;
 
 ## Assessment Test 6
 
-- 1. [The Report](https://www.hackerrank.com/challenges/the-report/problem?isFullScreen=false): You are given two tables: Students and Grades. Students contains three columns ID, Name and Marks. Ketty gives Eve a task to generate a report containing three columns: Name, Grade and Mark. Ketty doesn't want the NAMES of those students who received a grade lower than 8. The report must be in descending order by grade -- i.e. higher grades are entered first. If there is more than one student with the same grade (8-10) assigned to them, order those particular students by their name alphabetically. Finally, if the grade is lower than 8, use "NULL" as their name and list them by their grades in descending order. If there is more than one student with the same grade (1-7) assigned to them, order those particular students by their marks in ascending order. Write a query to help Eve.
+- 1. [Binary Tree Nodes](https://www.hackerrank.com/challenges/binary-search-tree-1/problem?isFullScreen=false): You are given a table, BST, containing two columns: N and P, where N represents the value of a node in Binary Tree, and P is the parent of N. Write a query to find the node type of Binary Tree ordered by the value of the node. Output one of the following for each node. Root: If node is root node. Leaf: If node is leaf node. Inner: If node is neither root nor leaf node.
+```sql
+SELECT N, CASE
+    WHEN P IS NULL THEN ' Root'
+    WHEN N IN (SELECT P FROM BST) THEN 'Inner'
+    ELSE 'Leaf'
+    END
+FROM BST
+ORDER BY N;
+```
+OR
+```sql
+SELECT N, IF(P IS NULL, 'Root', IF((SELECT COUNT(*) FROM BST WHERE P=B.N)>0, 'Inner', 'Leaf')) FROM BST AS B
+ORDER BY N;
+```
+
+
+- 2. [New Companies](https://www.hackerrank.com/challenges/the-company/problem?isFullScreen=false): Amber's conglomerate corporation just acquired some new companies. Given the table schemas below, write a query to print the company_code, founder name, total number of lead managers, total number of senior managers, total number of managers, and total number of employees. Order your output by ascending company_code.
+```sql
+SELECT c.company_code, c.founder, COUNT(DISTINCT l.lead_manager_code), COUNT(DISTINCT s.senior_manager_code), COUNT(DISTINCT m.manager_code), COUNT(DISTINCT e.employee_code)
+FROM Company c, Lead_Manager l, Senior_Manager s, Manager m, Employee e
+WHERE c.company_code = l.company_code
+  AND l.lead_manager_code = s.lead_manager_code
+  AND s.senior_manager_code = m.senior_manager_code
+  AND m.manager_code = e.manager_code
+GROUP BY c.company_code, c.founder
+ORDER BY c.company_code;
+```
+
+- 3. [The Report](https://www.hackerrank.com/challenges/the-report/problem?isFullScreen=false): You are given two tables: Students and Grades. Students contains three columns ID, Name and Marks. Ketty gives Eve a task to generate a report containing three columns: Name, Grade and Mark. Ketty doesn't want the NAMES of those students who received a grade lower than 8. The report must be in descending order by grade -- i.e. higher grades are entered first. If there is more than one student with the same grade (8-10) assigned to them, order those particular students by their name alphabetically. Finally, if the grade is lower than 8, use "NULL" as their name and list them by their grades in descending order. If there is more than one student with the same grade (1-7) assigned to them, order those particular students by their marks in ascending order. Write a query to help Eve.
 ```sql
 SELECT IF(Grade > 7, Name, NULL), Grade, Marks
 FROM Students 
@@ -241,28 +270,16 @@ ORDER BY G.Grade DESC, Name;
 ```
 
 
-- 2. [Binary Tree Nodes](https://www.hackerrank.com/challenges/binary-search-tree-1/problem?isFullScreen=false): You are given a table, BST, containing two columns: N and P, where N represents the value of a node in Binary Tree, and P is the parent of N. Write a query to find the node type of Binary Tree ordered by the value of the node. Output one of the following for each node. Root: If node is root node. Leaf: If node is leaf node. Inner: If node is neither root nor leaf node.
-```sql
-SELECT N, CASE
-    WHEN P IS NULL THEN ' Root'
-    WHEN N IN (SELECT P FROM BST) THEN 'Inner'
-    ELSE 'Leaf'
-    END
-FROM BST
-ORDER BY N;
-```
-OR
-```sql
-SELECT N, IF(P IS NULL, 'Root', IF((SELECT COUNT(*) FROM BST WHERE P=B.N)>0, 'Inner', 'Leaf')) FROM BST AS B
-ORDER BY N;
-```
-
-
-- 3. []():
+- 4. [Top Competitors](https://www.hackerrank.com/challenges/full-score/problem?isFullScreen=false):Julia just finished conducting a coding contest, and she needs your help assembling the leaderboard! Write a query to print the respective hacker_id and name of hackers who achieved full scores for more than one challenge. Order your output in descending order by the total number of challenges in which the hacker earned a full score. If more than one hacker received full scores in same number of challenges, then sort them by ascending hacker_id.
 ```sql
 
 ```
 
+
+- 4. []():
+```sql
+
+```
 
 
 
@@ -273,6 +290,16 @@ ORDER BY N;
 
 
 
+- 4. []():
+```sql
+
+```
+
+
+- 4. []():
+```sql
+
+```
 
 
 ## For More Information
