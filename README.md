@@ -223,22 +223,7 @@ FROM city;
 
 ## Assessment Test 6
 
-
-- 1. [The PADS](https://www.hackerrank.com/challenges/the-pads/problem?isFullScreen=false): Generate the following two result sets: Query an alphabetically ordered list of all names in OCCUPATIONS, immediately followed by the first letter of each profession as a parenthetical (i.e.: enclosed in parentheses). For example: AnActorName(A), ADoctorName(D), AProfessorName(P), and ASingerName(S). Query the number of ocurrences of each occupation in OCCUPATIONS. Sort the occurrences in ascending order, and output them in the following format: There are a total of occupation_count occupations. where occupation_count is the number of occurrences of an occupation in OCCUPATIONS and [occupation] is the lowercase occupation name. If more than one Occupation has the same occupation_count, they should be ordered alphabetically. Note: There will be at least two entries in the table for each type of occupation.
-```sql
-SELECT CONCAT(name,'(', LEFT(occupation, 1),')') AS name
-FROM occupations
-ORDER BY name;
-```
-```sql
-SELECT CONCAT('There are a total of ', COUNT(occupation), ' ', LOWER(occupation), 's.') AS total
-FROM occupations
-GROUP BY occupation
-ORDER BY total;
-```
-
-
-- 2. [Type of Triangle](https://www.hackerrank.com/challenges/what-type-of-triangle/problem?isFullScreen=false):Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. Output one of the following statements for each record in the table: Equilateral: It's a triangle with  sides of equal length. Isosceles: It's a triangle with  sides of equal length. Scalene: It's a triangle with  sides of differing lengths. Not A Triangle: The given values of A, B, and C don't form a triangle.
+- 1. [Type of Triangle](https://www.hackerrank.com/challenges/what-type-of-triangle/problem?isFullScreen=false): Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. Output one of the following statements for each record in the table: Equilateral: It's a triangle with  sides of equal length. Isosceles: It's a triangle with  sides of equal length. Scalene: It's a triangle with  sides of differing lengths. Not A Triangle: The given values of A, B, and C don't form a triangle.
 ```sql
 SELECT CASE
     WHEN 2*GREATEST(A, B, C) >= (A+B+C) THEN "Not A Triangle"
@@ -251,21 +236,17 @@ FROM TRIANGLES
 
 
 
-- 3. []():
+- 2. [The PADS](https://www.hackerrank.com/challenges/the-pads/problem?isFullScreen=false): Generate the following two result sets: Query an alphabetically ordered list of all names in OCCUPATIONS, immediately followed by the first letter of each profession as a parenthetical (i.e.: enclosed in parentheses). For example: AnActorName(A), ADoctorName(D), AProfessorName(P), and ASingerName(S). Query the number of ocurrences of each occupation in OCCUPATIONS. Sort the occurrences in ascending order, and output them in the following format: There are a total of occupation_count occupations. where occupation_count is the number of occurrences of an occupation in OCCUPATIONS and [occupation] is the lowercase occupation name. If more than one Occupation has the same occupation_count, they should be ordered alphabetically. Note: There will be at least two entries in the table for each type of occupation.
 ```sql
-
+SELECT CONCAT(name,'(', LEFT(occupation, 1),')') AS name
+FROM occupations
+ORDER BY name;
 ```
-
-
-- 4. []():
 ```sql
-
-```
-
-
-- 5. []():
-```sql
-
+SELECT CONCAT('There are a total of ', COUNT(occupation), ' ', LOWER(occupation), 's.') AS total
+FROM occupations
+GROUP BY occupation
+ORDER BY total;
 ```
 
 
@@ -300,7 +281,13 @@ GROUP BY c.company_code, c.founder
 ORDER BY c.company_code;
 ```
 
-- 3. [The Report](https://www.hackerrank.com/challenges/the-report/problem?isFullScreen=false): You are given two tables: Students and Grades. Students contains three columns ID, Name and Marks. Ketty gives Eve a task to generate a report containing three columns: Name, Grade and Mark. Ketty doesn't want the NAMES of those students who received a grade lower than 8. The report must be in descending order by grade -- i.e. higher grades are entered first. If there is more than one student with the same grade (8-10) assigned to them, order those particular students by their name alphabetically. Finally, if the grade is lower than 8, use "NULL" as their name and list them by their grades in descending order. If there is more than one student with the same grade (1-7) assigned to them, order those particular students by their marks in ascending order. Write a query to help Eve.
+- 3. []():
+```sql
+
+```
+
+
+- 4. [The Report](https://www.hackerrank.com/challenges/the-report/problem?isFullScreen=false): You are given two tables: Students and Grades. Students contains three columns ID, Name and Marks. Ketty gives Eve a task to generate a report containing three columns: Name, Grade and Mark. Ketty doesn't want the NAMES of those students who received a grade lower than 8. The report must be in descending order by grade -- i.e. higher grades are entered first. If there is more than one student with the same grade (8-10) assigned to them, order those particular students by their name alphabetically. Finally, if the grade is lower than 8, use "NULL" as their name and list them by their grades in descending order. If there is more than one student with the same grade (1-7) assigned to them, order those particular students by their marks in ascending order. Write a query to help Eve.
 ```sql
 SELECT IF(Grade > 7, Name, NULL), Grade, Marks
 FROM Students 
@@ -318,7 +305,7 @@ ORDER BY G.Grade DESC, Name;
 ```
 
 
-- 4. [Top Competitors](https://www.hackerrank.com/challenges/full-score/problem?isFullScreen=false):Julia just finished conducting a coding contest, and she needs your help assembling the leaderboard! Write a query to print the respective hacker_id and name of hackers who achieved full scores for more than one challenge. Order your output in descending order by the total number of challenges in which the hacker earned a full score. If more than one hacker received full scores in same number of challenges, then sort them by ascending hacker_id.
+- 5. [Top Competitors](https://www.hackerrank.com/challenges/full-score/problem?isFullScreen=false): Julia just finished conducting a coding contest, and she needs your help assembling the leaderboard! Write a query to print the respective hacker_id and name of hackers who achieved full scores for more than one challenge. Order your output in descending order by the total number of challenges in which the hacker earned a full score. If more than one hacker received full scores in same number of challenges, then sort them by ascending hacker_id.
 ```sql
 SELECT h.hacker_id, h.name
 FROM submissions s
@@ -333,17 +320,14 @@ ORDER BY COUNT(h.hacker_id) DESC, h.hacker_id;
 
 
 
-- 5. [Ollivander's Inventory](https://www.hackerrank.com/challenges/harry-potter-and-wands/problem?h_r=next-challenge&h_v=zen):
+- 6. [Ollivander's Inventory](https://www.hackerrank.com/challenges/harry-potter-and-wands/problem?h_r=next-challenge&h_v=zen):
 ```sql
 
 ```
 
 
 
-- 6. []():
-```sql
 
-```
 
 
 
