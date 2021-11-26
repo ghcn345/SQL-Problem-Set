@@ -272,34 +272,51 @@ ORDER BY G.Grade DESC, Name;
 
 - 4. [Top Competitors](https://www.hackerrank.com/challenges/full-score/problem?isFullScreen=false):Julia just finished conducting a coding contest, and she needs your help assembling the leaderboard! Write a query to print the respective hacker_id and name of hackers who achieved full scores for more than one challenge. Order your output in descending order by the total number of challenges in which the hacker earned a full score. If more than one hacker received full scores in same number of challenges, then sort them by ascending hacker_id.
 ```sql
-
+SELECT h.hacker_id, h.name
+FROM submissions s
+JOIN challenges c USING(challenge_id)
+JOIN difficulty d USING(difficulty_level)
+JOIN hackers h on s.hacker_id = h.hacker_id
+WHERE s.score = d.score
+GROUP BY h.hacker_id, h.name
+HAVING COUNT(h.hacker_id) > 1
+ORDER BY COUNT(h.hacker_id) DESC, h.hacker_id;
 ```
 
 
-- 4. []():
+
+- 5. []():
 ```sql
 
 ```
 
 
 
-- 4. []():
+- 6. []():
 ```sql
 
 ```
 
 
 
-- 4. []():
+- 7. []():
 ```sql
 
 ```
 
 
-- 4. []():
+- 8. []():
 ```sql
 
 ```
+
+
+
+- 9. []():
+```sql
+
+```
+
 
 
 ## For More Information
