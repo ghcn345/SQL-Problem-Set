@@ -386,10 +386,10 @@ ORDER BY power DESC, age DESC;
 SELECT MIN(doctor), MIN(professor), MIN(singer), MIN(actor)
 FROM (
     SELECT ROW_NUMBER() OVER (PARTITION BY occupation ORDER BY name) AS rn,  
-    IF(occupation='Doctor', name, NULL) doctor,
-    IF(occupation='Professor', name, NULL) professor,
-    IF(occupation='Singer', name, NULL) singer,
-    IF(occupation='Actor', name, NULL) actor
+    IF(occupation = 'Doctor', name, NULL) doctor,
+    IF(occupation = 'Professor', name, NULL) professor,
+    IF(occupation = 'Singer', name, NULL) singer,
+    IF(occupation = 'Actor', name, NULL) actor
     FROM occupations) temp
 GROUP BY rn;
 ```
@@ -414,7 +414,7 @@ GROUP BY rn;
 ```
 
 
-- 8. []():
+- 8. [Challenges](https://www.hackerrank.com/challenges/challenges/problem?isFullScreen=false): Julia asked her students to create some coding challenges. Write a query to print the hacker_id, name, and the total number of challenges created by each student. Sort your results by the total number of challenges in descending order. If more than one student created the same number of challenges, then sort the result by hacker_id. If more than one student created the same number of challenges and the count is less than the maximum number of challenges created, then exclude those students from the result.
 ```mysql
 
 ```
