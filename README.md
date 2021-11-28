@@ -355,8 +355,28 @@ WHERE p.is_evil = 0 AND w.coins_needed = (SELECT MIN(coins_needed)
                                           WHERE ws.power = w.power AND wp.age = p.age)
 ORDER BY w.power DESC, p.age DESC;
 ```
-
-
+OR
+```mysql
+SELECT id, age, coins_needed, power
+FROM (
+    SELECT id, age, coins_needed, power, ROW_NUMBER() OVER (PARTITION BY power, age ORDER BY coins_needed) AS row_num
+    FROM Wands w
+    JOIN Wands_Property p ON w.code = p.code
+    WHERE is_evil = 0) wp
+WHERE row_num = 1
+ORDER BY power DESC, age DESC;
+```
+OR
+```mysql
+SELECT id, age, coins_needed, power
+FROM (
+    SELECT id, age, coins_needed, power, MIN(coins_needed) OVER (PARTITION BY power, age ORDER BY coins_needed) AS min_coins 
+    FROM Wands w 
+    JOIN Wands_Property p ON w.code=p.code
+    WHERE is_evil = 0) wp
+WHERE coins_needed = min_coins 
+ORDER BY power DESC, age DESC;
+```
 
 
 
