@@ -416,9 +416,24 @@ GROUP BY rn;
 
 - 8. [Challenges](https://www.hackerrank.com/challenges/challenges/problem?isFullScreen=false): Julia asked her students to create some coding challenges. Write a query to print the hacker_id, name, and the total number of challenges created by each student. Sort your results by the total number of challenges in descending order. If more than one student created the same number of challenges, then sort the result by hacker_id. If more than one student created the same number of challenges and the count is less than the maximum number of challenges created, then exclude those students from the result.
 ```mysql
+WITH cnt AS (
+SELECT h.hacker_id, name, COUNT(challenge_id) AS challenges_created
+FROM Hackers h
+JOIN Challenges c ON c.hacker_id = h.hacker_id
+GROUP BY h.hacker_id, name)
+
+SELECT hacker_id, name, challenges_created
+FROM cnt
+WHERE challenges_created=(SELECT MAX(challenges_created) FROM cnt) 
+OR challenges_created IN (SELECT challenges_created FROM cnt
+                          GROUP BY challenges_created
+                          HAVING COUNT(challenges_created)=1)
+ORDER BY challenges_created DESC, hacker_id
+```
+OR
+```mysql
 
 ```
-
 
 
 - 9. []():
