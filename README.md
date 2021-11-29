@@ -428,14 +428,33 @@ WHERE challenges_created=(SELECT MAX(challenges_created) FROM cnt)
 OR challenges_created IN (SELECT challenges_created FROM cnt
                           GROUP BY challenges_created
                           HAVING COUNT(challenges_created)=1)
-ORDER BY challenges_created DESC, hacker_id
+ORDER BY challenges_created DESC, hacker_id;
 ```
 
 
 
 - 9. [Contest Leaderboard](https://www.hackerrank.com/challenges/contest-leaderboard/problem?isFullScreen=false): You did such a great job helping Julia with her last coding contest challenge that she wants you to work on this one, too! The total score of a hacker is the sum of their maximum scores for all of the challenges. Write a query to print the hacker_id, name, and total score of the hackers ordered by the descending score. If more than one hacker achieved the same total score, then sort the result by ascending hacker_id. Exclude all hackers with a total score of 0 from your result.
 ```mysql
-
+SELECT hacker_id, name, SUM(score_max) AS total
+FROM Hackers h
+JOIN (SELECT hacker_id, MAX(score) AS score_max
+      FROM Submissions s
+      GROUP BY hacker_id, challenge_id) t
+USING(hacker_id)
+GROUP BY hacker_id, name
+HAVING total != 0
+ORDER BY total DESC, hacker_id;
+```
+OR
+```mysql
+SELECT hacker_id, name, SUM(score_max) AS total
+FROM (SELECT hacker_id, name, MAX(score) AS score_max
+      FROM Hackers h
+      JOIN Submissions s USING(hacker_id)
+      GROUP BY hacker_id, name, challenge_id) t
+GROUP BY hacker_id, name
+HAVING total != 0
+ORDER BY total DESC, hacker_id;
 ```
 
 
