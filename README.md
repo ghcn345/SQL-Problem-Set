@@ -513,8 +513,7 @@ ORDER BY f1.X
 
 
 
-- 13. [Print Prime Numbers](https://www.hackerrank.com/challenges/print-prime-numbers/problem?isFullScreen=false): Write a query to print all prime numbers less than or equal to . Print your result on a single line, and use the ampersand (&) character as your separator (instead of a space). For example, the output for all prime numbers <=10 would be: 2&3&5&7.
-
+- 13. [15 Days of Learning SQL](https://www.hackerrank.com/challenges/15-days-of-learning-sql/problem?isFullScreen=false): Julia conducted a 15 days of learning SQL contest. The start date of the contest was March 01, 2016 and the end date was March 15, 2016. Write a query to print total number of unique hackers who made at least 1 submission each day (starting on the first day of the contest), and find the hacker_id and name of the hacker who made maximum number of submissions each day. If more than one such hacker has a maximum number of submissions, print the lowest hacker_id. The query should print this information for each day of the contest, sorted by the date.
 ```mysql
 
 ```
