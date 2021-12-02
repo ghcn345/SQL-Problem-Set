@@ -515,26 +515,29 @@ ORDER BY f1.X
 
 - 13. [15 Days of Learning SQL](https://www.hackerrank.com/challenges/15-days-of-learning-sql/problem?isFullScreen=false): Julia conducted a 15 days of learning SQL contest. The start date of the contest was March 01, 2016 and the end date was March 15, 2016. Write a query to print total number of unique hackers who made at least 1 submission each day (starting on the first day of the contest), and find the hacker_id and name of the hacker who made maximum number of submissions each day. If more than one such hacker has a maximum number of submissions, print the lowest hacker_id. The query should print this information for each day of the contest, sorted by the date.
 ```mysql
-SELECT submission_date,
-(SELECT COUNT(DISTINCT hacker_id)  
-FROM Submissions s2  
-WHERE s2.submission_date = s1.submission_date AND 
-(SELECT COUNT(distinct s3.submission_date) 
-FROM Submissions s3 
-WHERE s3.hacker_id = s2.hacker_id AND s3.submission_date < s1.submission_date) = dateDIFF(s1.submission_date , '2016-03-01')),
-(SELECT hacker_id  
-FROM submissions s2 
-WHERE s2.submission_date = s1.submission_date 
-GROUP BY hacker_id 
-ORDER BY count(submission_id) DESC , hacker_id limit 1) AS shit,
-(SELECT name 
-FROM hackers 
-WHERE hacker_id = shit)
-FROM 
-(SELECT distinct submission_date 
-FROM submissions) s1
-GROUP BY submission_date;
+WITH T1 AS (
+SELECT submission_date, COUNT(hacker_id) cnt
+FROM (SELECT hacker_id, submission_date, 
+      ROW_NUMBER() OVER (PARTITION BY hacker_id ORDER BY submission_date) date_rn
+      FROM Submissions 
+      GROUP BY submission_date, hacker_id
+      HAVING COUNT(submission_id) > 0) T
+WHERE date_rn >= DAY(submission_date)
+GROUP BY submission_date),
+T2 AS (
+SELECT submission_date, hacker_id, sub_cnt,
+       RANK() OVER (PARTITION BY submission_date ORDER BY sub_cnt DESC, hacker_id) rank
+FROM (SELECT submission_date, hacker_id, COUNT(submission_id) sub_cnt
+      FROM Submissions
+      GROUP BY submission_date, hacker_id) T)
+
+SELECT T1.submission_date, T1.cnt, T2.hacker_id, H.name
+FROM T1
+JOIN T2 ON T1.submission_date = T2.submission_date
+JOIN Hackers H ON H.hacker_id = T2.hacker_id
+WHERE T2.rank = 1
 ```
+
 
 
 
