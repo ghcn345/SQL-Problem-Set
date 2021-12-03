@@ -541,10 +541,13 @@ WHERE T2.rank = 1
 
 
 
-- 14. []():
+- 14. [Interviews](https://www.hackerrank.com/challenges/interviews/problem?isFullScreen=false): Samantha interviews many candidates from different colleges using coding challenges and contests. Write a query to print the contest_id, hacker_id, name, and the sums of total_submissions, total_accepted_submissions, total_views, and total_unique_views for each contest sorted by contest_id. Exclude the contest from the result if all four sums are . Note: A specific contest can be used to screen candidates at more than one college, but each college only holds  screening contest.
 ```mysql
 
 ```
+
+
+
 
 
 
