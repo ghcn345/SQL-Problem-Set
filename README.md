@@ -563,10 +563,6 @@ ORDER BY contest_id;
 
 
 
-- 15. []():
-```mysql
-
-```
 
 
 ## For More Information
