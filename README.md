@@ -543,7 +543,19 @@ WHERE T2.rank = 1
 
 - 14. [Interviews](https://www.hackerrank.com/challenges/interviews/problem?isFullScreen=false): Samantha interviews many candidates from different colleges using coding challenges and contests. Write a query to print the contest_id, hacker_id, name, and the sums of total_submissions, total_accepted_submissions, total_views, and total_unique_views for each contest sorted by contest_id. Exclude the contest from the result if all four sums are . Note: A specific contest can be used to screen candidates at more than one college, but each college only holds  screening contest.
 ```mysql
-
+SELECT contest_id, hacker_id, name, SUM(total_submissions_agg), SUM(total_accepted_submissions_agg), SUM(total_views_agg), SUM(total_unique_views_agg)
+FROM contests c
+JOIN colleges cl USING(contest_id)
+JOIN challenges ch USING(college_id)
+LEFT JOIN (SELECT challenge_id, SUM(total_views) AS total_views_agg, SUM(total_unique_views) AS total_unique_views_agg
+           FROM view_stats 
+           GROUP BY challenge_id) v USING(challenge_id)
+LEFT JOIN (SELECT challenge_id, SUM(total_submissions) AS total_submissions_agg, SUM(total_accepted_submissions) AS total_accepted_submissions_agg
+           FROM submission_stats 
+           GROUP BY challenge_id) s USING(challenge_id)
+GROUP BY contest_id, hacker_id, name
+HAVING SUM(total_submissions_agg)*SUM(total_accepted_submissions_agg)*SUM(total_views_agg)*SUM(total_unique_views_agg)!=0
+ORDER BY contest_id;
 ```
 
 
